@@ -49,6 +49,11 @@
                 <span>JAWADUR RAFID</span>
             </a>
 
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
             <div class="hidden md:flex items-center space-x-8 text-sm font-medium uppercase tracking-wider">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#about" class="nav-link">About</a>
@@ -64,6 +69,24 @@
                     <a href="https://linkedin.com/in/jawadurrafid/" target="_blank" class="social-btn"><i class="fa-brands fa-linkedin"></i></a>
                     <a href="https://github.com/jawadur13" target="_blank" class="social-btn"><i class="fa-brands fa-github"></i></a>
                 </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-slate-700 px-6 py-4 flex-col space-y-4 shadow-xl">
+            <a href="#home" class="mobile-nav-link text-slate-300 hover:text-sky-400 font-medium uppercase tracking-wider text-sm block">Home</a>
+            <a href="#about" class="mobile-nav-link text-slate-300 hover:text-sky-400 font-medium uppercase tracking-wider text-sm block">About</a>
+            <a href="#education" class="mobile-nav-link text-slate-300 hover:text-sky-400 font-medium uppercase tracking-wider text-sm block">Education</a>
+            <a href="#achievements" class="mobile-nav-link text-slate-300 hover:text-sky-400 font-medium uppercase tracking-wider text-sm block">Achievements</a>
+            <a href="#projects" class="mobile-nav-link text-slate-300 hover:text-sky-400 font-medium uppercase tracking-wider text-sm block">Projects</a>
+            <a href="#experience" class="mobile-nav-link text-slate-300 hover:text-sky-400 font-medium uppercase tracking-wider text-sm block">Experience</a>
+            <a href="#contact" class="mobile-nav-link text-slate-300 hover:text-sky-400 font-medium uppercase tracking-wider text-sm block">Contact</a>
+            
+            <div class="flex items-center space-x-6 pt-4 border-t border-slate-700">
+                <a href="mailto:rafidjawadur@gmail.com" class="social-btn text-xl"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://wa.me/8801824844522" target="_blank" class="social-btn text-xl"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://linkedin.com/in/jawadurrafid/" target="_blank" class="social-btn text-xl"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/jawadur13" target="_blank" class="social-btn text-xl"><i class="fa-brands fa-github"></i></a>
             </div>
         </div>
     </nav>
@@ -742,6 +765,32 @@
     </footer>
 
     <script>
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener("click", () => {
+                if (mobileMenu.classList.contains("hidden")) {
+                    mobileMenu.classList.remove("hidden");
+                    mobileMenu.classList.add("flex");
+                } else {
+                    mobileMenu.classList.add("hidden");
+                    mobileMenu.classList.remove("flex");
+                }
+            });
+
+            // Close menu when a link is clicked
+            mobileNavLinks.forEach(link => {
+                link.addEventListener("click", () => {
+                    mobileMenu.classList.add("hidden");
+                    mobileMenu.classList.remove("flex");
+                });
+            });
+        }
+
+        // Contact Form Logic
         const form = document.getElementById("contact-form");
         const status = document.getElementById("form-status");
 
