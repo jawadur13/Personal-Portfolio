@@ -255,6 +255,14 @@
             0% { transform: rotate(0deg) translateY(0); opacity: 1; }
             100% { transform: rotate(360deg) translateY(-80px); opacity: 0; }
         }
+
+        #mobile-menu-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        #mobile-menu-btn.menu-open i {
+            transform: rotate(90deg);
+        }
     </style>
 </head>
 
@@ -1037,6 +1045,7 @@
                 mobileMenu.classList.toggle("opacity-100");
                 mobileMenu.classList.toggle("opacity-0");
 
+                mobileMenuBtn.classList.toggle("menu-open");
                 const icon = mobileMenuBtn.querySelector("i");
                 icon.classList.toggle("fa-bars");
                 icon.classList.toggle("fa-times");
@@ -1049,6 +1058,7 @@
                     mobileMenu.classList.remove("opacity-100");
                     mobileMenu.classList.add("opacity-0");
 
+                    mobileMenuBtn.classList.remove("menu-open");
                     const icon = mobileMenuBtn.querySelector("i");
                     icon.classList.remove("fa-times");
                     icon.classList.add("fa-bars");
