@@ -203,6 +203,37 @@
         .social-btn:hover {
             color: #38bdf8;
         }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 50;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        #back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        #back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5);
+        }
     </style>
 </head>
 
@@ -958,6 +989,10 @@
         <p>© 2026 Md Jawadur Rafid.</p>
     </footer>
 
+    <button id="back-to-top" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
     <script>
         // Spotlight effect that tracks the mouse movement over the premium cards
         document.querySelectorAll('.premium-card').forEach(card => {
@@ -1060,8 +1095,16 @@
         }
         window.addEventListener("scroll", updateActiveNav);
         window.addEventListener("load", updateActiveNav);
-    </script>
 
+        // Back to top
+        const backToTop = document.getElementById("back-to-top");
+        window.addEventListener("scroll", () => {
+            backToTop.classList.toggle("visible", window.scrollY > 400);
+        });
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
 
 </body>
 
