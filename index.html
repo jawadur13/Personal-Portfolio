@@ -236,7 +236,7 @@
 
         <!-- Mobile Menu -->
         <div id="mobile-menu"
-            class="hidden lg:hidden bg-[#07070a]/95 backdrop-blur-md border-t border-white/10 px-6 py-4 flex-col space-y-4 shadow-2xl">
+            class="lg:hidden bg-[#07070a]/95 backdrop-blur-md border-t border-white/10 px-6 py-4 flex-col space-y-4 shadow-2xl overflow-hidden transition-all duration-500 max-h-0 opacity-0">
             <a href="#home"
                 class="mobile-nav-link text-slate-300 hover:text-sky-400 font-medium uppercase tracking-wider text-sm block">Home</a>
             <a href="#about"
@@ -976,20 +976,17 @@
 
         if (mobileMenuBtn && mobileMenu) {
             mobileMenuBtn.addEventListener("click", () => {
-                if (mobileMenu.classList.contains("hidden")) {
-                    mobileMenu.classList.remove("hidden");
-                    mobileMenu.classList.add("flex");
-                } else {
-                    mobileMenu.classList.add("hidden");
-                    mobileMenu.classList.remove("flex");
-                }
+                mobileMenu.classList.toggle("max-h-96");
+                mobileMenu.classList.toggle("opacity-100");
+                mobileMenu.classList.toggle("opacity-0");
             });
 
-            // Close menu when a link is clicked
             mobileNavLinks.forEach(link => {
                 link.addEventListener("click", () => {
-                    mobileMenu.classList.add("hidden");
-                    mobileMenu.classList.remove("flex");
+                    mobileMenu.classList.remove("max-h-96");
+                    mobileMenu.classList.add("max-h-0");
+                    mobileMenu.classList.remove("opacity-100");
+                    mobileMenu.classList.add("opacity-0");
                 });
             });
         }
