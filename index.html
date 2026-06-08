@@ -913,7 +913,7 @@
             <form id="contact-form" action="https://formspree.io/f/mbdajbnk" method="POST" class="space-y-4">
 
                 <!-- Email subject -->
-                <input type="hidden" name="_subject" value="New message from jawadur.pro.bd">
+                <input type="hidden" name="_subject" value="New message from jawadurrafid.com">
 
                 <!-- Name -->
                 <input type="text" name="name" placeholder="Your Name" required
@@ -935,9 +935,10 @@
                 <input type="text" name="_gotcha" style="display:none">
 
                 <!-- Submit -->
-                <button type="submit"
-                    class="w-full py-3 rounded-lg bg-gradient-to-r from-violet-600 via-sky-600 to-emerald-600 text-white font-bold hover:from-violet-500 hover:via-sky-500 hover:to-emerald-500 shadow-lg shadow-violet-950/20 transform hover:-translate-y-0.5 transition duration-300">
-                    Send Message
+                <button type="submit" id="submit-btn"
+                    class="w-full py-3 rounded-lg bg-gradient-to-r from-violet-600 via-sky-600 to-emerald-600 text-white font-bold hover:from-violet-500 hover:via-sky-500 hover:to-emerald-500 shadow-lg shadow-violet-950/20 transform hover:-translate-y-0.5 transition duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0">
+                    <span id="btn-text">Send Message</span>
+                    <span id="btn-spinner" class="hidden"><i class="fa-solid fa-circle-notch fa-spin"></i> Sending...</span>
                 </button>
             </form>
 
@@ -994,10 +995,17 @@
         // Contact Form Logic
         const form = document.getElementById("contact-form");
         const status = document.getElementById("form-status");
+        const submitBtn = document.getElementById("submit-btn");
+        const btnText = document.getElementById("btn-text");
+        const btnSpinner = document.getElementById("btn-spinner");
 
         if (form) {
             form.addEventListener("submit", async function (e) {
                 e.preventDefault();
+
+                submitBtn.disabled = true;
+                btnText.classList.add("hidden");
+                btnSpinner.classList.remove("hidden");
 
                 const data = new FormData(form);
 
@@ -1018,11 +1026,17 @@
                         status.classList.remove("hidden");
                         status.textContent = "❌ Oops! Something went wrong. Please try again.";
                         status.classList.replace("text-green-400", "text-red-400");
+                        submitBtn.disabled = false;
+                        btnText.classList.remove("hidden");
+                        btnSpinner.classList.add("hidden");
                     }
                 } catch (error) {
                     status.classList.remove("hidden");
                     status.textContent = "❌ Network error. Please try again later.";
                     status.classList.replace("text-green-400", "text-red-400");
+                    submitBtn.disabled = false;
+                    btnText.classList.remove("hidden");
+                    btnSpinner.classList.add("hidden");
                 }
             });
         }
