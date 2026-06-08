@@ -1036,6 +1036,10 @@
                 mobileMenu.classList.toggle("max-h-96");
                 mobileMenu.classList.toggle("opacity-100");
                 mobileMenu.classList.toggle("opacity-0");
+
+                const icon = mobileMenuBtn.querySelector("i");
+                icon.classList.toggle("fa-bars");
+                icon.classList.toggle("fa-times");
             });
 
             mobileNavLinks.forEach(link => {
@@ -1044,6 +1048,10 @@
                     mobileMenu.classList.add("max-h-0");
                     mobileMenu.classList.remove("opacity-100");
                     mobileMenu.classList.add("opacity-0");
+
+                    const icon = mobileMenuBtn.querySelector("i");
+                    icon.classList.remove("fa-times");
+                    icon.classList.add("fa-bars");
                 });
             });
         }
