@@ -6,6 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Md Jawadur Rafid | Portfolio</title>
 
+    <!-- SEO -->
+    <meta name="description" content="Md Jawadur Rafid — Frontend-focused CSE student passionate about building clean, responsive web interfaces.">
+    <meta name="keywords" content="Jawadur Rafid, portfolio, frontend developer, web designer, HTML, CSS, JavaScript, IUBAT">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Md Jawadur Rafid | Portfolio">
+    <meta property="og:description" content="Frontend-focused developer crafting clean, responsive web experiences.">
+    <meta property="og:image" content="https://jawadurrafid.com/profile.jpg">
+    <meta property="og:url" content="https://jawadurrafid.com">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Md Jawadur Rafid | Portfolio">
+    <meta name="twitter:description" content="Frontend-focused developer crafting clean, responsive web experiences.">
+    <meta name="twitter:image" content="https://jawadurrafid.com/profile.jpg">
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
@@ -127,6 +143,19 @@
             color: #38bdf8;
         }
 
+        .nav-link.active {
+            color: #38bdf8;
+        }
+
+        .nav-link.active::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .mobile-nav-link.active {
+            color: #38bdf8;
+        }
+
         /* Premium glass card design */
         .premium-card {
             background: rgba(10, 11, 15, 0.7);
@@ -190,6 +219,66 @@
         .social-btn:hover {
             color: #38bdf8;
         }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 50;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        #back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            animation: shadowPulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes shadowPulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3); }
+            50% { box-shadow: 0 4px 35px rgba(59, 130, 246, 0.7); }
+        }
+
+        #back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 40px rgba(59, 130, 246, 0.8);
+        }
+
+        #back-to-top:active {
+            transform: scale(0.9);
+            transition: transform 0.08s;
+        }
+
+        #back-to-top.flying {
+            animation: flyAway 0.6s ease-in forwards;
+            pointer-events: none;
+        }
+
+        @keyframes flyAway {
+            0% { transform: rotate(0deg) translateY(0); opacity: 1; }
+            100% { transform: rotate(360deg) translateY(-80px); opacity: 0; }
+        }
+
+        #mobile-menu-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        #mobile-menu-btn.menu-open i {
+            transform: rotate(90deg);
+        }
     </style>
 </head>
 
@@ -197,7 +286,7 @@
     <div class="grid-bg"></div>
 
     <nav
-        class="fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-5xl bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl z-50 shadow-[0_10px_30px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-300">
+        class="fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-5xl bg-black/90 backdrop-blur-xl border border-white/20 rounded-2xl z-50 shadow-[0_20px_60px_rgba(0,0,0,0.8),0_0_30px_rgba(59,130,246,0.05),inset_0_1px_0_rgba(255,255,255,0.08)] overflow-hidden transition-all duration-300">
         <div class="px-6 py-3.5 flex justify-between items-center">
             <a href="#home"
                 class="font-bold text-xl tracking-tight bg-gradient-to-r from-violet-400 via-sky-400 to-emerald-400 bg-clip-text text-transparent">
@@ -223,7 +312,7 @@
 
         <!-- Mobile Menu -->
         <div id="mobile-menu"
-            class="hidden lg:hidden bg-[#07070a]/95 backdrop-blur-md border-t border-white/10 px-6 py-4 flex-col space-y-4 shadow-2xl">
+            class="lg:hidden bg-[#07070a]/95 backdrop-blur-md border-t border-white/10 px-6 py-4 flex-col space-y-4 shadow-2xl overflow-hidden transition-all duration-500 max-h-0 opacity-0">
             <a href="#home"
                 class="mobile-nav-link text-slate-300 hover:text-sky-400 font-medium uppercase tracking-wider text-sm block">Home</a>
             <a href="#about"
@@ -242,7 +331,7 @@
     </nav>
 
     <section id="home"
-        class="min-h-screen max-w-5xl mx-auto flex flex-col justify-center items-center text-center px-6 pt-20 relative z-10">
+        class="min-h-screen max-w-5xl mx-auto flex flex-col justify-center items-center text-center px-6 pt-32 relative z-10">
         <div
             class="relative mb-8 p-1 bg-gradient-to-r from-violet-500 via-sky-500 to-emerald-500 rounded-full shadow-[0_0_30px_rgba(139,92,246,0.25)] hover:shadow-[0_0_45px_rgba(139,92,246,0.4)] transition-all duration-500">
             <img src="profile.jpg" alt="Md Jawadur Rafid"
@@ -869,9 +958,9 @@
                     <div class="bg-sky-500/10 border border-sky-500/15 p-3 rounded-xl text-sky-300">
                         <i class="fa-solid fa-location-dot"></i>
                     </div>
-                    <a href="https://www.google.com/maps?q=23.887944,90.38825" target="_blank"
+                    <a href="https://www.google.com/maps/place/Dhaka/@23.7810669,90.2545329,51354m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3755b8b087026b81:0x8fa563bbdd5904c2!8m2!3d23.804093!4d90.4152376!16zL20vMGZuYjQ?entry=ttu&g_ep=EgoyMDI2MDYwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank"
                         class="text-lg hover:text-sky-400 transition">
-                        73C, Road 12/B, Sector 10, Uttara, Dhaka 1230
+                        Dhaka, Bangladesh
                     </a>
                 </div>
 
@@ -900,7 +989,7 @@
             <form id="contact-form" action="https://formspree.io/f/mbdajbnk" method="POST" class="space-y-4">
 
                 <!-- Email subject -->
-                <input type="hidden" name="_subject" value="New message from jawadur.pro.bd">
+                <input type="hidden" name="_subject" value="New message from jawadurrafid.com">
 
                 <!-- Name -->
                 <input type="text" name="name" placeholder="Your Name" required
@@ -922,9 +1011,10 @@
                 <input type="text" name="_gotcha" style="display:none">
 
                 <!-- Submit -->
-                <button type="submit"
-                    class="w-full py-3 rounded-lg bg-gradient-to-r from-violet-600 via-sky-600 to-emerald-600 text-white font-bold hover:from-violet-500 hover:via-sky-500 hover:to-emerald-500 shadow-lg shadow-violet-950/20 transform hover:-translate-y-0.5 transition duration-300">
-                    Send Message
+                <button type="submit" id="submit-btn"
+                    class="w-full py-3 rounded-lg bg-gradient-to-r from-violet-600 via-sky-600 to-emerald-600 text-white font-bold hover:from-violet-500 hover:via-sky-500 hover:to-emerald-500 shadow-lg shadow-violet-950/20 transform hover:-translate-y-0.5 transition duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0">
+                    <span id="btn-text">Send Message</span>
+                    <span id="btn-spinner" class="hidden"><i class="fa-solid fa-circle-notch fa-spin"></i> Sending...</span>
                 </button>
             </form>
 
@@ -943,6 +1033,10 @@
     <footer class="py-12 max-w-5xl mx-auto text-center text-slate-500 text-sm border-t border-white/5 relative z-10">
         <p>© 2026 Md Jawadur Rafid.</p>
     </footer>
+
+    <button id="back-to-top" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
 
     <script>
         // Spotlight effect that tracks the mouse movement over the premium cards
@@ -963,20 +1057,27 @@
 
         if (mobileMenuBtn && mobileMenu) {
             mobileMenuBtn.addEventListener("click", () => {
-                if (mobileMenu.classList.contains("hidden")) {
-                    mobileMenu.classList.remove("hidden");
-                    mobileMenu.classList.add("flex");
-                } else {
-                    mobileMenu.classList.add("hidden");
-                    mobileMenu.classList.remove("flex");
-                }
+                mobileMenu.classList.toggle("max-h-96");
+                mobileMenu.classList.toggle("opacity-100");
+                mobileMenu.classList.toggle("opacity-0");
+
+                mobileMenuBtn.classList.toggle("menu-open");
+                const icon = mobileMenuBtn.querySelector("i");
+                icon.classList.toggle("fa-bars");
+                icon.classList.toggle("fa-times");
             });
 
-            // Close menu when a link is clicked
             mobileNavLinks.forEach(link => {
                 link.addEventListener("click", () => {
-                    mobileMenu.classList.add("hidden");
-                    mobileMenu.classList.remove("flex");
+                    mobileMenu.classList.remove("max-h-96");
+                    mobileMenu.classList.add("max-h-0");
+                    mobileMenu.classList.remove("opacity-100");
+                    mobileMenu.classList.add("opacity-0");
+
+                    mobileMenuBtn.classList.remove("menu-open");
+                    const icon = mobileMenuBtn.querySelector("i");
+                    icon.classList.remove("fa-times");
+                    icon.classList.add("fa-bars");
                 });
             });
         }
@@ -984,10 +1085,17 @@
         // Contact Form Logic
         const form = document.getElementById("contact-form");
         const status = document.getElementById("form-status");
+        const submitBtn = document.getElementById("submit-btn");
+        const btnText = document.getElementById("btn-text");
+        const btnSpinner = document.getElementById("btn-spinner");
 
         if (form) {
             form.addEventListener("submit", async function (e) {
                 e.preventDefault();
+
+                submitBtn.disabled = true;
+                btnText.classList.add("hidden");
+                btnSpinner.classList.remove("hidden");
 
                 const data = new FormData(form);
 
@@ -1008,16 +1116,54 @@
                         status.classList.remove("hidden");
                         status.textContent = "❌ Oops! Something went wrong. Please try again.";
                         status.classList.replace("text-green-400", "text-red-400");
+                        submitBtn.disabled = false;
+                        btnText.classList.remove("hidden");
+                        btnSpinner.classList.add("hidden");
                     }
                 } catch (error) {
                     status.classList.remove("hidden");
                     status.textContent = "❌ Network error. Please try again later.";
                     status.classList.replace("text-green-400", "text-red-400");
+                    submitBtn.disabled = false;
+                    btnText.classList.remove("hidden");
+                    btnSpinner.classList.add("hidden");
                 }
             });
         }
-    </script>
 
+        // Active nav link on scroll
+        const navSections = document.querySelectorAll("section[id]");
+        const navLinksAll = document.querySelectorAll(".nav-link, .mobile-nav-link");
+
+        function updateActiveNav() {
+            let current = "home";
+            navSections.forEach(section => {
+                const top = section.offsetTop - 120;
+                if (window.scrollY >= top) current = section.getAttribute("id");
+            });
+            navLinksAll.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === "#" + current) {
+                    link.classList.add("active");
+                }
+            });
+        }
+        window.addEventListener("scroll", updateActiveNav);
+        window.addEventListener("load", updateActiveNav);
+
+        // Back to top
+        const backToTop = document.getElementById("back-to-top");
+        window.addEventListener("scroll", () => {
+            backToTop.classList.toggle("visible", window.scrollY > 400);
+        });
+        backToTop.addEventListener("click", () => {
+            backToTop.classList.add("flying");
+            setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }, 300);
+            setTimeout(() => backToTop.classList.remove("flying"), 1000);
+        });
+    </script>
 
 </body>
 
